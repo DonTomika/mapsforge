@@ -14,6 +14,7 @@
  */
 package org.mapsforge.map.rendertheme;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,6 +27,7 @@ import org.xml.sax.SAXException;
 public final class XmlUtils {
 	private static final String PREFIX_FILE = "file:";
 	private static final String PREFIX_JAR = "jar:";
+	private static final String PREFIX_BASE64 = "base64:";
 
 	public static void checkMandatoryAttribute(String elementName, String attributeName, Object attributeValue)
 			throws SAXException {
@@ -85,7 +87,7 @@ public final class XmlUtils {
 		}
 	}
 
-	private static InputStream createInputStream(String relativePathPrefix, String src) throws FileNotFoundException {
+	private static InputStream createInputStream(String relativePathPrefix, String src) throws IOException {
 		if (src.startsWith(PREFIX_JAR)) {
 			String absoluteName = getAbsoluteName(relativePathPrefix, src.substring(PREFIX_JAR.length()));
 			InputStream inputStream = XmlUtils.class.getResourceAsStream(absoluteName);
@@ -103,6 +105,9 @@ public final class XmlUtils {
 				throw new FileNotFoundException("cannot read file: " + file.getAbsolutePath());
 			}
 			return new FileInputStream(file);
+		} else if (src.startsWith(PREFIX_BASE64)) {
+			String data = src.substring(PREFIX_BASE64.length());
+			return new ByteArrayInputStream(Base64.decode(data));
 		}
 
 		throw new FileNotFoundException("invalid bitmap source: " + src);
