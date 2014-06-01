@@ -56,7 +56,7 @@ public class FileSystemTileCache implements TileCache {
 	/**
 	 * Path to the caching folder on the external storage.
 	 */
-	private static final String CACHE_DIRECTORY = "/Android/data/org.mapsforge.android.maps/cache/";
+	public static String CACHE_DIRECTORY = null;
 
 	/**
 	 * File name extension for cached images.
@@ -145,8 +145,7 @@ public class FileSystemTileCache implements TileCache {
 	private boolean persistent;
 
 	private File createCacheDirectory() {
-		String externalStorageDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
-		String cacheDirectoryPath = externalStorageDirectory + CACHE_DIRECTORY + this.mapViewId;
+		String cacheDirectoryPath = CACHE_DIRECTORY + this.mapViewId;
 		File file = new File(cacheDirectoryPath);
 		if (!file.exists() && !file.mkdirs()) {
 			LOGGER.log(Level.SEVERE, "could not create directory: ", file);
