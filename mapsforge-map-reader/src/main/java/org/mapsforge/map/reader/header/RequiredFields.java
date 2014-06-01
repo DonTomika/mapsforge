@@ -155,9 +155,9 @@ final class RequiredFields {
 	static FileOpenResult readTilePixelSize(ReadBuffer readBuffer, MapFileInfoBuilder mapFileInfoBuilder) {
 		// get and check the tile pixel size (2 bytes)
 		int tilePixelSize = readBuffer.readShort();
-		if (tilePixelSize != Tile.TILE_SIZE) {
+		/*if (tilePixelSize != Tile.TILE_SIZE) {
 			return new FileOpenResult("unsupported tile pixel size: " + tilePixelSize);
-		}
+		}*/
 		mapFileInfoBuilder.tilePixelSize = tilePixelSize;
 		return FileOpenResult.SUCCESS;
 	}

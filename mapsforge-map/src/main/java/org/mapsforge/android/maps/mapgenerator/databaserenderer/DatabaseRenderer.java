@@ -108,6 +108,7 @@ public class DatabaseRenderer implements RenderCallback {
 	private final List<WayTextContainer> wayNames;
 	private final List<List<List<ShapePaintContainer>>> ways;
 	private final List<SymbolContainer> waySymbols;
+	private float density = 1.0f;
 
 	/**
 	 * Constructs a new DatabaseRenderer.
@@ -405,7 +406,7 @@ public class DatabaseRenderer implements RenderCallback {
 	 */
 	private void setScaleStrokeWidth(byte zoomLevel) {
 		int zoomLevelDiff = Math.max(zoomLevel - STROKE_MIN_ZOOM_LEVEL, 0);
-		this.renderTheme.scaleStrokeWidth((float) Math.pow(STROKE_INCREASE, zoomLevelDiff));
+		this.renderTheme.scaleStrokeWidth((float) Math.pow(STROKE_INCREASE, zoomLevelDiff) * density);
 	}
 
 	public void destroy() {
@@ -413,5 +414,9 @@ public class DatabaseRenderer implements RenderCallback {
 			this.renderTheme.destroy();
 			this.renderTheme = null;
 		}
+	}
+	
+	public void setDensity(float density) {
+		this.density = density;
 	}
 }
