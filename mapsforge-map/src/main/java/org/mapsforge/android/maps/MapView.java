@@ -43,8 +43,6 @@ import org.mapsforge.core.util.MercatorProjection;
 import org.mapsforge.map.reader.MapDatabase;
 import org.mapsforge.map.reader.header.FileOpenResult;
 import org.mapsforge.map.rendertheme.ExternalRenderTheme;
-import org.mapsforge.map.rendertheme.InternalRenderTheme;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -70,7 +68,6 @@ public class MapView extends ViewGroup {
 	/**
 	 * Default render theme of the MapView.
 	 */
-	public static final InternalRenderTheme DEFAULT_RENDER_THEME = InternalRenderTheme.OSMARENDER;
 	private static final float DEFAULT_TEXT_SCALE = 1;
 	private static final int DEFAULT_TILE_CACHE_SIZE_FILE_SYSTEM = 100;
 	private static final int DEFAULT_TILE_CACHE_SIZE_IN_MEMORY = 20;
@@ -132,7 +129,7 @@ public class MapView extends ViewGroup {
 		this.fpsCounter = new FpsCounter();
 		this.frameBuffer = new FrameBuffer(this);
 		this.inMemoryTileCache = new InMemoryTileCache(DEFAULT_TILE_CACHE_SIZE_IN_MEMORY);
-		this.jobParameters = new JobParameters(DEFAULT_RENDER_THEME, DEFAULT_TEXT_SCALE);
+		this.jobParameters = null;
 		this.jobQueue = new JobQueue(this);
 		this.mapDatabase = new MapDatabase();
 		this.mapViewPosition = new MapViewPosition(this);
@@ -483,23 +480,6 @@ public class MapView extends ViewGroup {
 
 		org.mapsforge.map.rendertheme.XmlRenderTheme jobTheme = new ExternalRenderTheme(renderThemeFile);
 		this.jobParameters = new JobParameters(jobTheme, this.jobParameters.textScale);
-		clearAndRedrawMapView();
-	}
-
-	/**
-	 * Sets the internal theme which is used for rendering the map.
-	 * 
-	 * @param internalRenderTheme
-	 *            the internal rendering theme.
-	 * @throws IllegalArgumentException
-	 *             if the supplied internalRenderTheme is null.
-	 */
-	public void setRenderTheme(InternalRenderTheme internalRenderTheme) {
-		if (internalRenderTheme == null) {
-			throw new IllegalArgumentException("render theme must not be null");
-		}
-
-		this.jobParameters = new JobParameters(internalRenderTheme, this.jobParameters.textScale);
 		clearAndRedrawMapView();
 	}
 
