@@ -24,7 +24,7 @@
 
 	<modules>
 		<module>mapsforge-core</module>
-		<module>mapsforge-map</module>
+		<!-- <module>mapsforge-map</module> -->
 		<module>mapsforge-render-theme</module>
 		<module>mapsforge-map-reader</module>
 		<module>mapsforge-map-writer</module>

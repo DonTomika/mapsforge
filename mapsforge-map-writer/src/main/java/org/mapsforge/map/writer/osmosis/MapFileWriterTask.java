@@ -63,6 +63,7 @@ public class MapFileWriterTask implements Sink {
 			configuration.setFileSpecificationVersion(Integer.parseInt(properties
 					.getProperty(Constants.PROPERTY_NAME_FILE_SPECIFICATION_VERSION)));
 
+			LOGGER.setLevel(Level.FINEST);
 			LOGGER.info("mapfile-writer version: " + configuration.getWriterVersion());
 			LOGGER.info("mapfile format specification version: " + configuration.getFileSpecificationVersion());
 		} catch (IOException e) {
