@@ -11,6 +11,14 @@
 		<osm-tag key="highway" value="mini_roundabout" zoom-appear="17" />
 		<osm-tag key="highway" value="traffic_signals" zoom-appear="17" />
 		<osm-tag key="highway" value="turning_circle" zoom-appear="15" />
+        
+        <osm-tag key="highway" value="crossing" zoom-appear="17" />
+        <osm-tag key="crossing" value="traffic_signals" zoom-appear="17" />
+        <osm-tag key="crossing" value="uncontrolled" zoom-appear="17" />
+        <osm-tag key="crossing" value="island" zoom-appear="17" />
+        <osm-tag key="crossing" value="no" zoom-appear="17" />
+        <osm-tag key="crossing" value="unmarked" zoom-appear="17" />
+        <osm-tag key="crossing" value="unknown" zoom-appear="17" />
 	</pois>
 
 	<!-- PUBLIC AMENITIES -->
@@ -246,6 +254,7 @@
 		<osm-tag key="highway" value="secondary_link" zoom-appear="8" />
 		
 		<osm-tag key="highway" value="tertiary" zoom-appear="9" />
+		<osm-tag key="highway" value="tertiary_link" zoom-appear="9" />
 		
 		<!-- residential streets should appear at zoom level 13, but the larger ones should be visible from 11 -->
 		<osm-tag key="highway" value="residential" zoom-appear="12" />
